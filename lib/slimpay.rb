@@ -21,8 +21,8 @@ require 'slimpay/direct_debit'
 module Slimpay
   PRODUCTION_ENDPOINT = 'https://api.slimpay.net'
   API_HEADER = "application/hal+json; profile='https://api.slimpay.net/alps/v1'"
-  SANDBOX_API_HEADER = "application/hal+json; profile='https://api-sandbox.slimpay.net/alps/v1'"
-  SANDBOX_ENDPOINT = 'https://api-sandbox.slimpay.net'
+  SANDBOX_API_HEADER = "application/hal+json; profile='https://api.slimpay.net/alps/v1'"
+  SANDBOX_ENDPOINT = 'https://api.preprod.slimpay.com'
   SANDBOX_CLIENT_ID = 'democreditor01'
   SANDBOX_SECRET_ID = 'demosecret01'
   SANDBOX_CREDITOR = 'democreditor'
@@ -55,7 +55,7 @@ module Slimpay
     if http_response.code >= 400
       Slimpay::Error.new(http_response)
     else
-      http_response
+      http_response.body
     end
   end
 end
